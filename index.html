@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special ✨</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a romantic feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+        }
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 overflow-x-hidden text-slate-800">
+
+    <!-- Header / Intro Section -->
+    <header class="text-center my-8 animate-fade-in">
+        <h1 class="text-5xl md:text-6xl text-rose-600 cursive mb-2">Hey there, Beautiful ✨</h1>
+        <p class="text-sm md:text-base text-rose-500 font-medium tracking-wide uppercase">I made something special just for you</p>
+    </header>
+
+    <!-- Main Content Card -->
+    <main class="max-w-md w-full bg-white/80 backdrop-blur-md rounded-3xl shadow-xl border border-rose-100 p-6 md:p-8 text-center space-y-6 transition-all duration-300">
+        
+        <!-- Center Image / GIF -->
+        <div class="relative w-48 h-48 mx-auto rounded-2xl overflow-hidden shadow-md bg-rose-100 flex items-center justify-center">
+            <!-- Replace the src with a cute couple photo or a favorite GIF -->
+            <img id="display-img" src="https://media.giphy.com/media/c7stg6G2869vW/giphy.gif" alt="Cute GIF" class="w-full h-full object-cover">
+        </div>
+
+        <!-- The Message -->
+        <div class="space-y-3">
+            <h2 id="main-heading" class="text-2xl font-semibold text-slate-800">Every moment with you is amazing...</h2>
+            <p id="sub-text" class="text-slate-600 text-sm leading-relaxed">
+                From our late-night chats to the little laughs we share, you've made my world a whole lot brighter. I can't imagine it without you anymore.
+            </p>
+        </div>
+
+        <hr class="border-rose-200">
+
+        <!-- Question Prompt -->
+        <h3 id="question" class="text-2xl md:text-3xl font-bold text-rose-600 cursive py-2">Will you be my girlfriend? 🌹</h3>
+
+        <!-- Interactive Buttons -->
+        <div id="button-group" class="relative flex justify-center items-center gap-6 min-h-[60px]">
+            <button id="yesBtn" onclick="handleYes()" class="px-8 py-3 bg-gradient-to-r models from-rose-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:from-rose-600 hover:to-pink-600 transform hover:scale-105 active:scale-95 transition-all duration-200 z-10">
+                Yes! 💖
+            </button>
+            <button id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()" class="absolute px-6 py-2 bg-slate-200 text-slate-600 font-medium rounded-full shadow-sm transition-all duration-200 ease-out z-10">
+                No 🤔
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="my-6 text-xs text-rose-400">
+        Made with ❤️ just for you
+    </footer>
+
+    <!-- Logic for Interactions -->
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const displayImg = document.getElementById('display-img');
+        const mainHeading = document.getElementById('main-heading');
+        const subText = document.getElementById('sub-text');
+        const question = document.getElementById('question');
+        const buttonGroup = document.getElementById('button-group');
+
+        let yesScale = 1;
+
+        // Function to make the "No" button run away
+        function moveNoButton() {
+            // Get boundaries of the button group container to keep it somewhat contained but out of reach
+            const container = buttonGroup.getBoundingClientRect();
+            
+            // Generate random positions within a safe screen range
+            const x = Math.random() * (window.innerWidth - 120) - (window.innerWidth / 2 - 60);
+            const y = Math.random() * (window.innerHeight - 200) - (window.innerHeight / 2 - 100);
+
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+            
+            // Make the "Yes" button grow every time she tries to click "No"
+            yesScale += 0.15;
+            yesBtn.style.transform = `scale(${yesScale})`;
+        }
+
+        // Function when she clicks "Yes"
+        function handleYes() {
+            // Change the image to a celebratory one (can be a sweet photo of you two)
+            displayImg.src = "https://media.giphy.com/media/G9AzO1Y8sQ1Y4/giphy.gif"; 
+            
+            // Update the text
+            mainHeading.innerText = "Yayyy! You just made me the happiest guy ever! 🎉";
+            subText.innerText = "I promise to cherish every single day with you. Let's make endless memories together! 💕";
+            
+            // Hide the question and the no button completely
+            question.innerText = "Officially Yours 🔒❤️";
+            noBtn.style.display = 'none';
+            
+            // Reset yes button scale and remove absolute transformations
+            yesBtn.style.transform = 'scale(1)';
+            yesBtn.innerText = "I love you! 🥰";
+            yesBtn.disabled = true;
+            yesBtn.className = "px-8 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-full shadow-lg cursor-default";
+        }
+    </script>
+</body>
+</html>
